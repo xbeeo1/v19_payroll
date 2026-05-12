@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <data>
+
+        <record id="employee_payslip_wizard_form_view" model="ir.ui.view">
+            <field name="name">employee.payslip.wizard.form</field>
+            <field name="model">employee.payslip.wizard</field>
+            <field name="arch" type="xml">
+                <form string="">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="date_from"/>
+                                <field name="date_to"/>
+                            </group>
+                            <group>
+                                <field name="department_id"/>
+                                <field name="employee_id" widget="many2many_tags" options="{'no_quick_create': True, 'no_create_edit': True,'no_open': True, 'no_create': True}"/>
+                            </group>
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Print" name="action_print_payslip" type="object" class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="x"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="employee_payslip_wizard_window_act" model="ir.actions.act_window">
+            <field name="name">Employee Payslip</field>
+            <field name="res_model">employee.payslip.wizard</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="employee_payslip_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem id="menu_payroll_reporting"
+              name="Reporting"
+              parent="om_hr_payroll.menu_hr_payroll_root"
+              sequence="15"/>
+
+        <menuitem id="menu_hr_employee"
+              name="Employee Payslip Report"
+              action="employee_payslip_wizard_window_act"
+              parent="menu_payroll_reporting"
+              sequence="10"/>
+
+
+
+    </data>
+
+</odoo>

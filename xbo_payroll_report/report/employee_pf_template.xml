@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="employee_pf_report_template">
+        <t t-call="web.html_container">
+            <t t-call="web.external_layout">
+                <h2 colspan="6" style="text-align: center;">
+                    Employee Provident Fund Report
+                </h2>
+                <div class="row text-capitalize text-dark" style="margin-top:30px;">
+                    <div class="col-6">
+                        <div class="row">
+                            <div class="col-2"/>
+                            <div class="col-4">
+                                <strong>
+                                    <span>From Date:</span>
+                                </strong>
+                            </div>
+                            <div class="col-6">
+                                <span t-esc="from_date"/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-2"/>
+                            <div class="col-4">
+                                <strong>
+                                    <span>To Date:</span>
+                                </strong>
+                            </div>
+                            <div class="col-6">
+                                <span t-esc="to_date"/>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="col-12">
+                        <table class="table table-sm table-bordered">
+                            <thead>
+                                <tr class="text-center text-bold"
+                                    style="font-family:'Roboto',sans-serif;font-size:15px;font-weight: bold;">
+                                    <t t-foreach="code_names" t-as="code">
+                                        <th style="width:100px;height:100px ;background:#d1e0e0;vertical-align:top;font-weight: bold;text-align:center;">
+                                            <span t-esc="code"/>
+                                        </th>
+                                    </t>
+                                </tr>
+                            </thead>
+                            <tbody style="font-family:'Roboto',sans-serif;font-size:13px;">
+                                <tr t-foreach="pf_lines" t-as="line">
+                                    <t t-if="line.get('dept_name',False)">
+                                        <td
+                                                style="color:black;font-weight: bold; font-size:15px; font-style:octarine;background:#ffefcc;">
+                                            <span t-esc="line.get('dept_name')"/>
+                                        </td>
+                                    </t>
+                                    <t t-if="line.get('Employee_wise',False)">
+                                        <t t-foreach="code_names" t-as="code">
+                                            <td style="font-size:15px; font-style:octarine; text-align:center;">
+                                                <span t-esc="line.get(code,False)"/>
+                                            </td>
+                                        </t>
+                                    </t>
+                                    <t t-if="line.get('departwise',False)">
+                                        <t t-foreach="code_names" t-as="code">
+                                            <td style="font-size:15px; font-style:octarine;font-weight: bold;text-align: center;background:#ffefcc;">
+                                                <span t-esc="line.get(code, False)"/>
+                                            </td>
+                                        </t>
+                                    </t>
+                                </tr>
+                                <tr>
+                                    <t t-foreach="code_names" t-as="code">
+                                        <td style="font-size:15px; font-style:octarine;font-weight: bold;text-align: center;background:#d1e0e0;">
+                                            <span t-esc="dept_grand_total.get(code, False)"/>
+                                        </td>
+                                    </t>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </t>
+
+    </template>
+
+</odoo>
