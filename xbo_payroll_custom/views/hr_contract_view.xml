@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="hr_contract_form_ssol_inherit" model="ir.ui.view">
+        <field name="name">hr.contract.view.form.ssol.inherit</field>
+        <field name="model">hr.version</field>
+        <field name="inherit_id" ref="hr.hr_contract_template_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='wage']" position="attributes">
+                <attribute name="nolabel">0</attribute>
+                <attribute name="string">Basic Salary</attribute>
+            </xpath>
+
+            <xpath expr="//label[@for='wage']" position="before">
+                <label for="gross_salary"/>
+                <div class="o_row mw-50" name="gross_salary">
+                    <field name="gross_salary" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="gross_salary_label">/ month</div>
+                </div>
+
+            </xpath>
+            <xpath expr="//div[@name='wage']" position="after">
+                <label for="wht_amount"/>
+                <div class="o_row mw-50" name="wht_amount">
+                    <field name="wht_amount" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="pf_period_label">/ month</div>
+                </div>
+                <label for="pf_percentage"/>
+                <div class="o_row mw-50" name="pf_percentage">
+                    <field name="pf_percentage" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="pf_period_label">/%</div>
+                </div>
+                <label for="eobi_percentage"/>
+                <div class="o_row mw-50" name="eobi_percentage">
+                    <field name="eobi_percentage" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="pf_period_label">/%</div>
+                </div>
+                <label for="minimum_wage"/>
+                <div class="o_row mw-50" name="minimum_wage">
+                    <field name="minimum_wage" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="minimum_wage_label"></div>
+                </div>
+                <label for="social_security_percentage"/>
+                <div class="o_row mw-50" name="social_security_percentage">
+                    <field name="social_security_percentage" class="oe_inline o_hr_narrow_field" nolabel="1"/>
+                    <div class="mb-3" name="social_security_percentage_label">/%</div>
+                </div>
+            </xpath>
+
+        </field>
+    </record>
+
+        <record id="hr_contract_form_inherit_ssol" model="ir.ui.view">
+            <field name="name">hr.contract.view.form.inherit.ssol</field>
+            <field name="model">hr.version</field>
+            <field name="inherit_id" ref="om_hr_payroll.hr_contract_form_inherit"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='travel_allowance']" position="attributes">
+                    <attribute name="nolabel">0</attribute>
+                    <attribute name="string">Conveyance Allowance</attribute>
+                </xpath>
+
+                <xpath expr="//field[@name='other_allowance']" position="attributes">
+                    <attribute name="nolabel">0</attribute>
+                    <attribute name="string">Special Allowance</attribute>
+                </xpath>
+                <xpath expr="//field[@name='meal_allowance']" position="attributes">
+                    <attribute name="nolabel">0</attribute>
+                    <attribute name="string">Fuel Reimbursement</attribute>
+                </xpath>
+
+            </field>
+        </record>
+
+
+
+
+    </data>
+</odoo>

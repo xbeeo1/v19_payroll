@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_loan_type_tree" model="ir.ui.view">
+            <field name="name">loan.type.list</field>
+            <field name="model">loan.type</field>
+            <field name="arch" type="xml">
+                <list string="Loan Type">
+                    <field name="name"/>
+                     <field name="type"/>
+                </list>
+            </field>
+        </record>
+
+        <record id="view_loan_type_form" model="ir.ui.view">
+            <field name="name">loan.type.form</field>
+            <field name="model">loan.type</field>
+            <field name="arch" type="xml">
+                <form string="Loan Type" >
+                    <sheet>
+                        <group>
+                                <field name="name"/>
+                                <field name="type"/>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="act_loan_type" model="ir.actions.act_window">
+            <field name="res_model">loan.type</field>
+            <field name="name">Loan Type</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <menuitem id="hr_loan_menu_type"
+              name="Loan Type"
+              parent="hr_loan_menu_root"
+              action="act_loan_type"
+              sequence="1"/>
+
+
+
+
+
+
+
+    </data>
+</odoo>

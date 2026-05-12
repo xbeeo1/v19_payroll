@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="view_work_entry_types_tree" model="ir.ui.view">
+            <field name="name">work.entry.types.list</field>
+            <field name="model">work.entry.types</field>
+            <field name="arch" type="xml">
+                <list string="Work Entry Types">
+                    <field name="name"/>
+                    <field name="code"/>
+
+                </list>
+            </field>
+        </record>
+
+        <record id="view_work_entry_types_form" model="ir.ui.view">
+            <field name="name">work.entry.types.form</field>
+            <field name="model">work.entry.types</field>
+            <field name="arch" type="xml">
+                <form string="Work Entry Types" >
+                    <sheet>
+                        <group>
+                                <field name="name"/>
+                                <field name="code"/>
+                        </group>
+                    </sheet>
+                    <chatter/>
+                </form>
+            </field>
+        </record>
+
+
+
+        <record id="act_work_entry_types" model="ir.actions.act_window">
+            <field name="res_model">work.entry.types</field>
+            <field name="name">Work Entry Types</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+
+        <menuitem id="work_entry_types_menu"
+              name="Work Entry Types"
+              parent="om_hr_payroll.menu_hr_payroll_configuration"
+              action="act_work_entry_types"
+              sequence="3"/>
+
+
+
+
+
+
+
+    </data>
+</odoo>

@@ -1,0 +1,47 @@
+<odoo>
+
+    <data>
+
+        <record id="print_employee_payslip_wizard_form_view" model="ir.ui.view">
+            <field name="name">print.employee.payslip.wizard.form</field>
+            <field name="model">print.employee.payslip</field>
+            <field name="arch" type="xml">
+                <form string="Payslip">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="payslip_date"/>
+                            </group>
+
+                        </group>
+                    </sheet>
+                    <footer>
+                        <button string="Print" name="action_print" type="object" class="oe_highlight" data-hotkey="q"/>
+                        <button string="Cancel" class="btn btn-secondary" special="cancel" data-hotkey="x"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+
+        <record id="print_employee_payslip_wizard_window_act" model="ir.actions.act_window">
+            <field name="name">Payslip</field>
+            <field name="res_model">print.employee.payslip</field>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="print_employee_payslip_wizard_form_view"/>
+            <field name="target">new</field>
+        </record>
+
+
+
+        <menuitem id="menu_print_employee_payslip"
+              name="Payslip"
+              sequence="189"
+              web_icon="xbo_payroll_custom,static/description/payslip.png"
+              action="print_employee_payslip_wizard_window_act"
+            />
+
+
+
+    </data>
+
+</odoo>

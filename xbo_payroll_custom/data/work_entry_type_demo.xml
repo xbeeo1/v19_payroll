@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data noupdate="1">
+        <!-- Demo data: Define a Work Entry Types -->
+        <record id="work_entry_type_unpaid" model="work.entry.types">
+            <field name="code">LEAVE90</field>
+            <field name="name">Unpaid</field>
+        </record>
+
+        <record id="work_entry_type_pto" model="work.entry.types">
+            <field name="code">LEAVE120</field>
+            <field name="name">Paid Time Off</field>
+        </record>
+
+        <record id="work_entry_type_sto" model="work.entry.types">
+            <field name="code">LEAVE110</field>
+            <field name="name">Sick Time Off</field>
+        </record>
+        <record id="work_entry_type_al" model="work.entry.types">
+            <field name="code">LEAVE140</field>
+            <field name="name">Annual Leaves</field>
+        </record>
+
+	</data>
+</odoo>

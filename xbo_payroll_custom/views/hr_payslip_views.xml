@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Inherited the hr_payslip form view to add 'loan_line_id' field within the 'input_line_ids' tree. -->
+    <record id="view_hr_payslip_form" model="ir.ui.view">
+        <field name="name">hr.payslip.view.form.inherit.ohrms.loan</field>
+        <field name="model">hr.payslip</field>
+        <field name="inherit_id" ref="om_hr_payroll.view_hr_payslip_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='input_line_ids']//list//field[@name='sequence']" position="after">
+                <field name="loan_line_id" column_invisible="True"/>
+            </xpath>
+            <xpath expr="//field[@name='input_line_ids']//list//field[@name='amount']" position="replace">
+                <field name="amount" sum="Total Amount"/>
+            </xpath>
+            <xpath expr="//field[@name='worked_days_line_ids']/list/field[@name='number_of_days']" position="replace">
+                <field name="number_of_days"/>
+            </xpath>
+            <xpath expr="//button[@name='action_payslip_done']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='action_payslip_done']" position="before">
+                <button string="Confirm" name="custom_action_payslip_done" type="object"
+                    invisible="state != 'draft'"
+                    class="oe_highlight"/>
+            </xpath>
+
+            <xpath expr="//div[@name='button_box']" position="inside">
+                <button type="object" name="action_view_journal_entries" class="oe_stat_button" invisible="journal_entries_count == 0" >
+                    <field name="journal_entries_count" widget="statinfo" string="Journal Entries"/>
+                </button>
+
+
+            </xpath>
+
+        </field>
+    </record>
+
+    <record id="hr_payslip_run_form_inherit" model="ir.ui.view">
+        <field name="name">hr.payslip.run.view.form.inherit</field>
+        <field name="model">hr.payslip.run</field>
+        <field name="inherit_id" ref="om_hr_payroll.hr_payslip_run_form"/>
+        <field name="arch" type="xml">
+
+            <xpath expr="//button[@name='done_payslip_run']" position="attributes">
+                <attribute name="invisible">1</attribute>
+            </xpath>
+            <xpath expr="//button[@name='done_payslip_run']" position="before">
+                <button string="Mark As Done" name="custom_done_payslip_run" type="object"
+                    invisible="state != 'draft'"
+                    class="oe_highlight"/>
+            </xpath>
+
+        </field>
+    </record>
+
+
+</odoo>

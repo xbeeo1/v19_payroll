@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+
+        <record id="SPECIALALW" model="hr.salary.rule.category">
+            <field name="name">Allowance</field>
+            <field name="code">SPECIALALW</field>
+        </record>
+
+        <record id="TOTALGROSS" model="hr.salary.rule.category">
+            <field name="name">Total Gross</field>
+            <field name="code">TOTALGROSS</field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="0">
+        <!-- Demo data: Define a salary rule  for loans -->
+        <record id="hr_rule_loan" model="hr.salary.rule">
+            <field name="code">LO</field>
+            <field name="name">Loan</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.loan_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="190"/>
+        </record>
+
+
+        <record id="hr_rule_loan_against_pf" model="hr.salary.rule">
+            <field name="code">LOPF</field>
+            <field name="name">Loan Against Provident Fund</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.loan_pf_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="180"/>
+        </record>
+
+        <record id="hr_rule_loan_against_as" model="hr.salary.rule">
+            <field name="code">LOAS</field>
+            <field name="name">Advance Against Salary</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.loan_as_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="185"/>
+        </record>
+
+        <record id="hr_rule_pto" model="hr.salary.rule">
+            <field name="code">PTO</field>
+            <field name="name">Paid Time Off</field>
+            <field name="category_id" ref="om_hr_payroll.ALW"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.pto_calculation('LEAVE120',payslip)</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="14"/>
+        </record>
+
+<!--        <record id="hr_rule_ph" model="hr.salary.rule">-->
+<!--            <field name="code">PH</field>-->
+<!--            <field name="name">Public Holiday</field>-->
+<!--            <field name="category_id" ref="om_hr_payroll.ALW"/>-->
+<!--            <field name="amount_select">code</field>-->
+<!--            <field name="amount_python_compute">result = contract.ph_calculation(payslip)</field>-->
+<!--            <field name="appears_on_payslip" eval="True"/>-->
+<!--            <field name="sequence" eval="24"/>-->
+<!--        </record>-->
+
+
+        <record id="hr_rule_pf" model="hr.salary.rule">
+            <field name="code">PF</field>
+            <field name="name">Provident Fund</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.pf_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="155"/>
+        </record>
+
+        <record id="hr_rule_WHT" model="hr.salary.rule">
+            <field name="code">WHT</field>
+            <field name="name">W.H.T</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.wht_amount)</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="160"/>
+        </record>
+
+        <record id="hr_rule_special_all" model="hr.salary.rule">
+            <field name="code">SAF</field>
+            <field name="name">Special Allowance</field>
+            <field name="category_id" ref="xbo_payroll_custom.SPECIALALW"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = contract.other_allowance</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="105"/>
+        </record>
+
+        <record id="hr_rule_total_gross" model="hr.salary.rule">
+            <field name="name">Total Gross</field>
+            <field name="sequence" eval="125"/>
+            <field name="code">TOTALGROSS</field>
+            <field name="category_id" ref="xbo_payroll_custom.TOTALGROSS"/>
+            <field name="condition_select">none</field>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.SPECIALALW</field>
+        </record>
+
+
+        <record id="hr_rule_eobi" model="hr.salary.rule">
+            <field name="code">EOBI</field>
+            <field name="name">EOBI</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -((contract.minimum_wage/100)*contract.eobi_percentage)</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="150"/>
+        </record>
+
+        <record id="hr_rule_social_security" model="hr.salary.rule">
+            <field name="code">SS</field>
+            <field name="name">Social Security</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -((contract.minimum_wage/100)*contract.social_security_percentage)</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="165"/>
+        </record>
+
+        <record id="hr_rule_excess_leave" model="hr.salary.rule">
+            <field name="code">EL</field>
+            <field name="name">Excess Leave</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.el_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="170"/>
+        </record>
+
+        <record id="hr_rule_half_day_leave" model="hr.salary.rule">
+            <field name="code">HDL</field>
+            <field name="name">Half Day Leave</field>
+            <field name="category_id" ref="om_hr_payroll.DED"/>
+            <field name="amount_select">code</field>
+            <field name="amount_python_compute">result = -(contract.hdl_calculation(payslip))</field>
+            <field name="appears_on_payslip" eval="True"/>
+            <field name="sequence" eval="175"/>
+        </record>
+
+
+    </data>
+    <data noupdate="0">
+        <record id="om_hr_payroll.hr_rule_hra" model="hr.salary.rule">
+            <field name="sequence" eval="10"/>
+        </record>
+        <record id="om_hr_payroll.hr_rule_travel" model="hr.salary.rule">
+            <field name="name">Conveyance Allowance</field>
+            <field name="code">Conveyance</field>
+            <field name="sequence" eval="4"/>
+        </record>
+
+
+        <record id="om_hr_payroll.hr_rule_da" model="hr.salary.rule">
+            <field name="sequence" eval="20"/>
+        </record>
+
+        <record id="om_hr_payroll.hr_rule_medical" model="hr.salary.rule">
+            <field name="sequence" eval="7"/>
+        </record>
+
+        <record id="om_hr_payroll.hr_rule_meal" model="hr.salary.rule">
+            <field name="name">Fuel Reimbursement</field>
+            <field name="code">Fuel </field>
+            <field name="category_id" ref="xbo_payroll_custom.SPECIALALW"/>
+            <field name="sequence" eval="106"/>
+        </record>
+
+        <record id="om_hr_payroll.hr_rule_net" model="hr.salary.rule">
+
+            <field name="amount_python_compute">result = categories.BASIC + categories.ALW + categories.SPECIALALW + categories.DED</field>
+
+        </record>
+
+    </data>
+</odoo>

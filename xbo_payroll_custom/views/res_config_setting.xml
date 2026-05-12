@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="res_config_settings_view__ssol_form" model="ir.ui.view">
+        <field name="name">res.config.settings.view.form.inherit.hr.payroll.ssol</field>
+        <field name="model">res.config.settings</field>
+        <field name="priority" eval="45"/>
+        <field name="inherit_id" ref="om_hr_payroll.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//div[@id='om_hr_payroll_account']" position="after">
+                <block title="Salary Accounts">
+                    <setting id="=salary_debit_acocunt" string="Debit Account" company_dependent="1" >
+                        <setting id="salary_expense_acocunt" string="Salary Expense" company_dependent="1" >
+                            <field name="salary_expense_account_id" options="{'no_create': True, 'no_open': True}"/>
+                         </setting>
+                    </setting>
+                    <setting id="=salary_credit_acocunt" string="Credit Account" company_dependent="1" >
+                        <setting id="salaries_payable_acocunt" string="Salaries Payable" company_dependent="1" >
+                            <field name="salaries_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="eobi_payable_account" string="EOBI Payable" company_dependent="1" >
+                            <field name="eobi_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="social_secuirty_payable_account" string="Social Secuirty Payable" company_dependent="1" >
+                            <field name="social_secuirty_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="provident_fund_employee_contribution_payable_account" string="Provident Fund Employee Contribution Payable" company_dependent="1" >
+                            <field name="provident_fund_employee_contribution_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="advance_tax_salaries_account" string="Advance Tax On Salaries" company_dependent="1" >
+                            <field name="advance_tax_salaries_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="advance_staff_agains_salary_deduction_account" string="Advance to Staff against Salary Deduction" company_dependent="1" >
+                            <field name="advance_staff_agains_salary_deduction_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="loan_against_PF_deduction_account" string="Loan Against PF Deduction" company_dependent="1" >
+                            <field name="loan_against_PF_deduction_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="half_day_leave_deduction_account_id" string="Half-Day Leave Deduction" company_dependent="1" >
+                            <field name="half_day_leave_deduction_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+                        <setting id="excess_leave_deduction_account" string="Excess Leave Deduction" company_dependent="1" >
+                            <field name="excess_leave_deduction_account_id" options="{'no_create': True, 'no_open': True}"/>
+                        </setting>
+
+                    </setting>
+                </block>
+
+                <block title="Employer Contribution Account">
+                    <setting id="=salary_debit_acocunt" string="EOBI Account" company_dependent="1" >
+                        <setting id="=eobi_debit_acocunt" string="Debit Account" company_dependent="1" >
+                            <setting id="eobi_employer_contribution_account_id" string="EOBI-Employer Contribution" company_dependent="1" >
+                                    <field name="eobi_employer_contribution_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                        </setting>
+                        <setting id="=eobi_credit_acocunt" string="Credit Account" company_dependent="1" >
+                            <setting id="eobi_payable_employer_account_id" string="EOBI Payable Employer" company_dependent="1" >
+                                <field name="eobi_payable_employer_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                        </setting>
+                    </setting>
+                    <setting id="=pf_acocunt" string="Provident Fund Account" company_dependent="1" >
+                        <setting id="=eobi_debit_acocunt" string="Debit Account" company_dependent="1" >
+                            <setting id="provident_fund_expense_account_id" string="Provident Fund Expense" company_dependent="1" >
+                                    <field name="provident_fund_expense_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                            <setting id="provident_fund_employee_contribution_i_payable_account_id" string="Provident Fund Employee Contribution Payable" company_dependent="1" >
+                                    <field name="provident_fund_employee_contribution_i_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                            <setting id="provident_fund_employer_contribution_debit_payable_account_id" string="Provident Fund Employer Contribution Debit Payable" company_dependent="1" >
+                                    <field name="provident_fund_employer_contribution_debit_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                        </setting>
+                        <setting id="=eobi_credit_acocunt" string="Credit Account" company_dependent="1" >
+                            <setting id="provident_fund_employer_contribution_credit_payable_account_id" string="Provident Fund Employer Contribution Credit Payable" company_dependent="1" >
+                                <field name="provident_fund_employer_contribution_credit_payable_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                            <setting id="Bank_Cash_account_id" string="Bank/Cash Account" company_dependent="1" >
+                                <field name="Bank_Cash_account_id" options="{'no_create': True, 'no_open': True}"/>
+                             </setting>
+                        </setting>
+                    </setting>
+
+                </block>
+
+
+
+            </xpath>
+        </field>
+    </record>
+
+</odoo>
